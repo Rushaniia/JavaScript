@@ -5,22 +5,69 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Урок 1. Основы языка JavaScrirt</title>
+    <title>Урок 3. Циклы, массивы, структуры данных</title>
 </head>
 
 <body>
+    <!--Задача 1-->
     <script>
-        var t_grad = prompt('Введите температуру в градусах Цельсия', '');
+        const checkSimpleNum = (num) => {
+            // проверка числа, простое или нет
+            for (let i = 2; i < num; i++) {
+                if (num % i === 0) return false;
+            }
+            return true;
+        };
 
-        t_far = t_grad * 1.8 + 32;
-        alert(t_far);
+        const simpleNumArray = (num) => {
+            const arr = [];
+            let i = 2;
+            while (i <= num) {
+                if (checkSimpleNum(i)) {
+                    arr.push(i);
+                }
+                i++;
+            }
+            return arr;
+        };
+
+        console.log('Вывод массива простых чисел от 0 до 100: ' + simpleNumArray(100));
     </script>
+    <!-- Задача 2 и 3 -->
     <script>
-        var admin, name;
-        name = 'Василий';
-        admin = name;
-        alert(admin);
+        var basket = [
+            {
+                product: 'Меринос',
+                price: 100,
+            },
+            {
+                product: 'Акрил',
+                price: 200,
+            },
+            {
+                product: 'Ангора',
+                price: 300,
+            },
+        ];
+
+        let basketPrice = 0;
+        for (let prod of basket) {
+            basketPrice += prod.price;
+            console.log("Товар " + prod.product + " стоит: " + prod.price);
+        }
+
+        function countBasketPrice(basket) {
+            let funBasketPrice = 0;
+            for (let prod of basket) {
+                funBasketPrice += prod.price;
+            }
+            return funBasketPrice;
+        }
+
+        console.log("Стоимость корзины: " + countBasketPrice(basket) + " руб.");
+
     </script>
+
 </body>
 
 </html>
