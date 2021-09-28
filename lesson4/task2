@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Урок 4. Объекты в JavaScript</title>
+</head>
+
+<body>
+    <!--Задача 2-->
+    <script>
+        function Item(product, price, quantity, discount = 0) {
+            this.product = product;
+            this.price = price;
+            this.quantity = quantity;
+            this.discount = discount;
+            this.finalPrice = function () {
+                if (this.discount != 0) {
+                    return this.price - this.price * this.discount / 100;
+                } else {
+                    return this.price;
+                }
+            }
+            this.showMyChart = function () {
+                return `${this.product} (количество: ${this.quantity})`;
+            }
+        }
+
+        let shoppingCart = []
+
+        shoppingCart.push(
+            new Item('Меринос', 100, 2)
+        );
+        shoppingCart.push(
+            new Item('Акрил', 200, 5)
+        );
+        shoppingCart.push(
+            new Item('Ангора', 300, 1)
+        );
+
+
+        function finalChart(shoppingCart) {
+            console.log('Ваш заказ: ')
+            shoppingCart.forEach(val => {
+                console.log(`${val.showMyChart()}.
+    Цена с учетом скидки: ${val.finalPrice()}.
+    Стоимость позиции: ${val.quantity * val.finalPrice()}`);
+            });
+        }
+        finalChart(shoppingCart);
+
+
+        function finalCost(shoppingCart) {
+            return shoppingCart.reduce(function (acc, shoppingCart) {
+                return acc + (shoppingCart.finalPrice() * shoppingCart.quantity)
+            }, 0)
+        };
+        console.log(('Конечная стоимость заказа: ' + finalCost(shoppingCart)).toUpperCase());
+    </script>
+</body>
+
+</html>
